@@ -32,12 +32,15 @@ export default function CreateBlog() {
     data.append("title", formData.title);
     data.append("category", formData.category);
     data.append("content", formData.content);
-    data.append("image", formData.image);
+
+    if (formData.image) {
+      data.append("image", formData.image);
+    }
 
     try {
       setSubmitting(true);
 
-      await API.post("/blogs", data, {
+      await API.post("/api/blogs", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -63,7 +66,8 @@ export default function CreateBlog() {
           </h1>
 
           <p className="text-gray-600 mt-5 text-lg">
-            Add a title, category, thumbnail, and blog content to publish your article.
+            Add a title, category, thumbnail, and blog content to publish your
+            article.
           </p>
 
           <div className="mt-8 bg-white rounded-3xl shadow border border-gray-100 overflow-hidden">
@@ -88,6 +92,7 @@ export default function CreateBlog() {
           <label className="font-semibold text-gray-700">Blog Title</label>
           <input
             name="title"
+            value={formData.title}
             onChange={handleChange}
             type="text"
             placeholder="Enter blog title"
@@ -98,6 +103,7 @@ export default function CreateBlog() {
           <label className="font-semibold text-gray-700">Category</label>
           <select
             name="category"
+            value={formData.category}
             onChange={handleChange}
             className="w-full border border-gray-200 p-4 rounded-2xl mt-2 mb-5 outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500"
             required
@@ -122,6 +128,7 @@ export default function CreateBlog() {
           <label className="font-semibold text-gray-700">Content</label>
           <textarea
             name="content"
+            value={formData.content}
             onChange={handleChange}
             rows="9"
             placeholder="Write blog content..."

@@ -9,7 +9,7 @@ export default function Dashboard() {
 
   const fetchMyBlogs = async () => {
     try {
-      const res = await API.get("/blogs/my-blogs");
+      const res = await API.get("/api/blogs/my-blogs");
       setBlogs(res.data);
     } catch (error) {
       console.log(error);
@@ -23,7 +23,7 @@ export default function Dashboard() {
     if (!confirmDelete) return;
 
     try {
-      await API.delete(`/blogs/${id}`);
+      await API.delete(`/api/blogs/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
       alert("Blog deleted");
     } catch (error) {
@@ -103,7 +103,7 @@ export default function Dashboard() {
               >
                 <div className="flex items-center gap-5">
                   <img
-                    src={`http://localhost:5000/${blog.image}`}
+                    src={`${import.meta.env.VITE_API_URL}/${blog.image}`}
                     alt={blog.title}
                     className="w-20 h-20 object-cover rounded-2xl"
                   />
