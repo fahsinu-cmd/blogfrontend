@@ -24,9 +24,9 @@ export default function Login() {
     try {
       setLoading(true);
 
-      const res = await API.post("/auth/login", formData);
-      login(res.data.token, res.data.user);
+      const res = await API.post("/api/auth/login", formData);
 
+      login(res.data.token, res.data.user);
       navigate("/");
     } catch (error) {
       alert(error.response?.data?.message || "Login failed");
@@ -60,6 +60,7 @@ export default function Login() {
 
           <input
             name="email"
+            value={formData.email}
             onChange={handleChange}
             type="email"
             placeholder="Email address"
@@ -69,6 +70,7 @@ export default function Login() {
 
           <input
             name="password"
+            value={formData.password}
             onChange={handleChange}
             type="password"
             placeholder="Password"
