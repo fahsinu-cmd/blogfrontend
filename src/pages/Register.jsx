@@ -23,7 +23,7 @@ export default function Register() {
     try {
       setLoading(true);
 
-      await API.post("/auth/register", formData);
+      await API.post("/api/auth/register", formData);
 
       alert("Register success");
       navigate("/login");
@@ -59,6 +59,7 @@ export default function Register() {
 
           <input
             name="name"
+            value={formData.name}
             onChange={handleChange}
             type="text"
             placeholder="Full name"
@@ -68,6 +69,7 @@ export default function Register() {
 
           <input
             name="email"
+            value={formData.email}
             onChange={handleChange}
             type="email"
             placeholder="Email address"
@@ -77,6 +79,7 @@ export default function Register() {
 
           <input
             name="password"
+            value={formData.password}
             onChange={handleChange}
             type="password"
             placeholder="Password"
