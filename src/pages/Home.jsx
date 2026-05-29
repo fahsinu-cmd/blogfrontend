@@ -11,7 +11,7 @@ export default function Home() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await API.get("/blogs");
+      const res = await API.get("/api/blogs");
 
       setLatestBlogs(res.data.slice(0, 6));
       setTrendingBlogs(

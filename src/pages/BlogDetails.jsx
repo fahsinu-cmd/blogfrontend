@@ -13,7 +13,7 @@ export default function BlogDetails() {
 
   const fetchBlog = async () => {
     try {
-      const res = await API.get(`/blogs/${id}`);
+      const res = await API.get(`/api/blogs/${id}`);
       setBlog(res.data);
     } catch (error) {
       console.log(error);
@@ -24,7 +24,7 @@ export default function BlogDetails() {
 
   const likeBlog = async () => {
     try {
-      const res = await API.put(`/blogs/${id}/like`);
+      const res = await API.put(`/api/blogs/${id}/like`);
       setBlog(res.data);
     } catch (error) {
       alert(error.response?.data?.message || "Login required to like");
@@ -50,8 +50,8 @@ export default function BlogDetails() {
     );
   }
 
-  const imageUrl = blog.image
-    ? `http://localhost:5000/${blog.image}`
+ const imageUrl = blog.image
+  ? `${import.meta.env.VITE_API_URL}${blog.image.startsWith("/") ? "" : "/"}${blog.image}`
     : "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop";
 
   const isOwner =

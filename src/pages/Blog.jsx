@@ -13,7 +13,7 @@ export default function Blog() {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const res = await API.get(`/blogs?search=${search}&category=${category}`);
+     const res = await API.get(`/api/blogs?search=${search}&category=${category}`);
       setBlogs(res.data);
     } catch (error) {
       console.log(error);
