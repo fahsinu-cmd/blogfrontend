@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function BlogCard({ blog }) {
   const fallbackImage =
-    "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop";
+    "https://sewbemidji.com/wp-content/uploads/2024/04/no-image-image.png";
 
   const getImageUrl = (image) => {
     if (!image) return fallbackImage;
