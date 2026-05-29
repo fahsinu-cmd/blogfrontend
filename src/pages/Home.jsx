@@ -65,7 +65,7 @@ export default function Home() {
 
           <div className="bg-white/10 backdrop-blur rounded-3xl p-4 shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop"
+              src="/home.webp"
               alt="Blog"
               className="rounded-2xl h-[420px] w-full object-cover"
             />
