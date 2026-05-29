@@ -18,23 +18,28 @@ export default function EditBlog() {
     image: null,
   });
 
+  const getImageUrl = (image) => {
+    if (!image) return "";
+    if (image.startsWith("http")) return image;
+
+    return `${import.meta.env.VITE_API_URL}${image.startsWith("/") ? "" : "/"}${image}`;
+  };
+
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await API.get(`/blogs/${id}`);
+        const res = await API.get(`/api/blogs/${id}`);
 
         setFormData({
-          title: res.data.title,
-          category: res.data.category,
-          content: res.data.content,
+          title: res.data.title || "",
+          category: res.data.category || "",
+          content: res.data.content || "",
           image: null,
         });
 
-        setPreview(
-          res.data.image ? `http://localhost:5000/${res.data.image}` : ""
-        );
+        setPreview(getImageUrl(res.data.image));
       } catch (error) {
-        alert("Blog fetch failed");
+        alert(error.response?.data?.message || "Blog fetch failed");
       } finally {
         setLoading(false);
       }
@@ -46,10 +51,20 @@ export default function EditBlog() {
   const handleChange = (e) => {
     if (e.target.name === "image") {
       const file = e.target.files[0];
-      setFormData({ ...formData, image: file });
-      setPreview(file ? URL.createObjectURL(file) : preview);
+
+      setFormData((prev) => ({
+        ...prev,
+        image: file,
+      }));
+
+      if (file) {
+        setPreview(URL.createObjectURL(file));
+      }
     } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setFormData((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
     }
   };
 
@@ -68,7 +83,7 @@ export default function EditBlog() {
     try {
       setSubmitting(true);
 
-      await API.put(`/blogs/${id}`, data, {
+      await API.put(`/api/blogs/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
