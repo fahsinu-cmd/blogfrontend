@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 
 export default function BlogCard({ blog }) {
+  const fallbackImage =
+    "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop";
+
   const imageUrl = blog.image
-    ? `http://localhost:5000/${blog.image}`
-    : "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop";
+    ? `${import.meta.env.VITE_API_URL}${blog.image.startsWith("/") ? "" : "/"}${blog.image}`
+    : fallbackImage;
 
   return (
     <div className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100">
@@ -11,6 +14,9 @@ export default function BlogCard({ blog }) {
         <img
           src={imageUrl}
           alt={blog.title}
+          onError={(e) => {
+            e.currentTarget.src = fallbackImage;
+          }}
           className="w-full h-60 object-cover group-hover:scale-110 transition duration-500"
         />
 
