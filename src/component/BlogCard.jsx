@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 export default function BlogCard({ blog }) {
-  const fallbackImage =
-    "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop";
+//   const fallbackImage =
+//     "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop";
 
   const imageUrl = blog.image
     ? `${import.meta.env.VITE_API_URL}${blog.image.startsWith("/") ? "" : "/"}${blog.image}`
