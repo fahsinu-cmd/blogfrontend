@@ -103,10 +103,9 @@
                 >
                   <div className="flex items-center gap-5">
                     <img
-                      src={
-  blog.image
-    ? `${import.meta.env.VITE_API_URL}${blog.image.startsWith("/") ? "" : "/"}${blog.image}`
-    : "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop"
+                     src={
+  blog.image ||
+  "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop"
 }
                       alt={blog.title}
                       className="w-20 h-20 object-cover rounded-2xl"
