@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 
@@ -33,6 +33,12 @@ export default function Register() {
       setLoading(false);
     }
   };
+    useEffect(() => {
+     const token = localStorage.getItem("token");
+     if (token) {
+       navigate("/" , {replace: true});
+     }
+    }, [navigate]);
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6 py-12">
