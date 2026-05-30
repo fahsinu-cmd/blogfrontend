@@ -14,7 +14,7 @@ import ProtectedRoute from "./component/ProtectedRoute";
 export default function App() {
   return (
     <>
-    <BrowserRouter>
+
 
 
      <Navbar />
@@ -65,7 +65,7 @@ export default function App() {
     
     
     
-    </BrowserRouter>
+
      
     </>
   );
